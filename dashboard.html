@@ -25,13 +25,20 @@
 
 <body>
 
-    <h1>Welcome to Dashboard 🎉</h1>
+    <h1 id="welcome">Welcome</h1>
 
     <p>You are logged in successfully.</p>
 
     <button onclick="logout()">Logout</button>
 
     <script>
+        // Get username from URL
+        let params = new URLSearchParams(window.location.search);
+        let user = params.get("user");
+
+        // Show username
+        document.getElementById("welcome").innerText = "Welcome, " + user + " 😎";
+
         function logout() {
             window.location.href = "index.html";
         }
