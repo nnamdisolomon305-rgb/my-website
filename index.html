@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Modern Login</title>
+    <title>Login App</title>
 
     <style>
         body {
@@ -13,6 +13,7 @@
             align-items: center;
             height: 100vh;
             color: white;
+            margin: 0;
         }
 
         .box {
@@ -20,18 +21,20 @@
             padding: 30px;
             border-radius: 10px;
             text-align: center;
-            width: 250px;
+            width: 260px;
         }
 
         input {
             padding: 10px;
-            margin: 10px;
+            margin: 10px 0;
             width: 90%;
+            border: none;
+            border-radius: 5px;
         }
 
         button {
             padding: 10px;
-            margin: 10px;
+            margin-top: 10px;
             width: 100%;
             background: #4CAF50;
             border: none;
@@ -39,10 +42,12 @@
             cursor: pointer;
         }
 
-        .toggle {
-            cursor: pointer;
-            font-size: 12px;
-            color: lightgray;
+        button:hover {
+            background: #45a049;
+        }
+
+        #result {
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -52,11 +57,8 @@
     <div class="box">
         <h2>Login</h2>
 
-        <input type="text" id="username" placeholder="Username"><br>
-
-        <input type="password" id="password" placeholder="Password"><br>
-
-        <span class="toggle" onclick="togglePassword()">Show Password</span>
+        <input type="text" id="username" placeholder="Enter Username">
+        <input type="password" id="password" placeholder="Enter Password">
 
         <button onclick="login()">Login</button>
 
@@ -68,20 +70,14 @@
             let user = document.getElementById("username").value;
             let pass = document.getElementById("password").value;
 
-            if (user === "admin" && pass === "1234") {
-                document.getElementById("result").innerText = " Login Successful!";
-            } else {
-                document.getElementById("result").innerText = " Invalid Username or Password";
+            if (user === "" || pass === "") {
+                document.getElementById("result").innerText = "⚠️ Please fill all fields";
             }
-        }
-
-        function togglePassword() {
-            let passField = document.getElementById("password");
-
-            if (passField.type === "password") {
-                passField.type = "text";
-            } else {
-                passField.type = "password";
+            else if (user === "admin" && pass === "1234") {
+                window.location.href = "dashboard.html";
+            }
+            else {
+                document.getElementById("result").innerText = "❌ Invalid Username or Password";
             }
         }
     </script>
